@@ -1,9 +1,13 @@
 import React from "react";
+import { productlist } from "../Data/ProdeuctList";
+import Productcard from "../Components/Productcard";
 
 const Dashboard = () => {
   return (
-    <div>
-      <h1>DashBoard</h1>
+    <div className="d-flex flex-wrap justify-content-center p-3">
+      {productlist.map((item) => (
+        <Productcard {...item} />
+      ))}
     </div>
   );
 };
