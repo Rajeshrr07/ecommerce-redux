@@ -1,10 +1,12 @@
 import React from "react";
-import Headers from "../Components/Headers";
+import { useParams } from "react-router-dom";
+
 
 const Product = () => {
+  const params = useParams();
   return (
     <div>
-      <h1>product page</h1>
+      <h1>product page {params.id}</h1>
     </div>
   );
 };

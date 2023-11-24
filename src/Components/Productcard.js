@@ -1,8 +1,10 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Productcard = (props) => {
+  const navigate = useNavigate()
   return (
-    <div className="card m-2" style={{ width: 300 }}>
+    <div className="card m-2 cursor-pointer" style={{ width: 300 }} role='button' onClick={()=> navigate(`/product/${props.id}`)}>
       <div className="mt-2">
         <img
           src={props.thumbnail}
