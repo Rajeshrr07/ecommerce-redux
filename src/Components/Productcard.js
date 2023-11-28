@@ -2,9 +2,14 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const Productcard = (props) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
-    <div className="card m-2 cursor-pointer" style={{ width: 300 }} role='button' onClick={()=> navigate(`/product/${props.id}`)}>
+    <div
+      className="card m-2 cursor-pointer"
+      style={{ width: 300 }}
+      role="button"
+      onClick={() => navigate(`/product/${props.id}`)}
+    >
       <div className="mt-2">
         <img
           src={props.thumbnail}
@@ -19,7 +24,8 @@ const Productcard = (props) => {
         <h6 className="mt-2">price: {`$${props.price}`}</h6>
         <h6 className="mt-2">Discount: {props.discountPercentage} %</h6>
         <h6 className="mt-2">Rating: {props.rating}</h6>
-        <div>
+
+        <div className="mt-2">
           {props.stock > 0 ? (
             <button className="btn btn-success">Available</button>
           ) : (

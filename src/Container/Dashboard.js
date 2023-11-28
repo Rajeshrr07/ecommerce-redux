@@ -6,7 +6,7 @@ const Dashboard = () => {
   return (
     <div className="d-flex flex-wrap justify-content-center p-3">
       {productlist.map((item) => (
-        <Productcard {...item} />
+        <Productcard {...item} key={productlist.id} />
       ))}
     </div>
   );
