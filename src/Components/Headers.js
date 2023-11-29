@@ -19,7 +19,12 @@ const Headers = () => {
             type="search"
             placeholder="search ..."
           ></input>
-          <button className="btn btn-success ms-3">Cart</button>
+          <button
+            className="btn btn-success ms-3"
+            onClick={() => navigate("/cart")}
+          >
+            Cart
+          </button>
         </div>
       </div>
     </div>

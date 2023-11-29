@@ -1,18 +1,22 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { productlist } from "../Data/ProdeuctList";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../Redux/Reducer/Cart";
 
 const Product = () => {
   const params = useParams();
-  const dispatch = useDispatch;
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const props = productlist.find(
     (element) => element.id === parseInt(params.id)
   );
   const addToCart = () => {
     dispatch(addItem(props));
   };
+  const list = useSelector((state) => state.cart.list);
+  const element = list.find((item) => item.id === props.id);
+
   return (
     <div className="card m-2">
       <div className="mt-2">
@@ -34,12 +38,21 @@ const Product = () => {
           {props.stock > 0 ? (
             <>
               <button className="btn btn-success">Buy Now</button>
-              <button
-                className="ms-3 btn btn-success"
-                onClick={() => addToCart()}
-              >
-                Add to cart
-              </button>
+              {element?.count > 0 ? (
+                <button
+                  className="ms-3 btn btn-outline-warning"
+                  onClick={() => navigate("/cart")}
+                >
+                  Go to cart
+                </button>
+              ) : (
+                <button
+                  className="ms-3 btn btn-success"
+                  onClick={() => addToCart()}
+                >
+                  Add to cart
+                </button>
+              )}
             </>
           ) : (
             <button className="btn btn-outline-danger">Out of stock</button>
