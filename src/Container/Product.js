@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { productlist } from "../Data/ProdeuctList";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,7 +11,10 @@ const Product = () => {
   const props = productlist.find(
     (element) => element.id === parseInt(params.id)
   );
+  const [alert, setAlert] = useState(false);
   const addToCart = () => {
+    setAlert(true);
+    setTimeout(() => setAlert(false), 5000);
     dispatch(addItem(props));
   };
   const list = useSelector((state) => state.cart.list);
@@ -19,6 +22,7 @@ const Product = () => {
 
   return (
     <div className="card m-2">
+      {alert && <span className="alert alert-success">Item added to cart</span>}
       <div className="mt-2">
         <img
           src={props.thumbnail}
@@ -37,7 +41,12 @@ const Product = () => {
         <div className="mt-4">
           {props.stock > 0 ? (
             <>
-              <button className="btn btn-success">Buy Now</button>
+              <button
+                className="btn btn-success"
+                onClick={() => navigate(`/checkout/${props.id}`)}
+              >
+                Buy Now
+              </button>
               {element?.count > 0 ? (
                 <button
                   className="ms-3 btn btn-outline-warning"

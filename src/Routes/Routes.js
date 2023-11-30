@@ -6,6 +6,7 @@ import Product from "../Container/Product";
 import Headers from "../Components/Headers";
 import Addcart from "../Container/Addcart";
 import Checkout from "../Container/Checkout";
+import Success from "../Container/Success";
 
 const Routers = () => {
   return (
@@ -19,6 +20,7 @@ const Routers = () => {
           <Route path="" element={<Checkout />} />
           <Route path=":id" element={<Checkout />} />
         </Route>
+        <Route path="/success" element={<Success />} />
       </Routes>
     </BrowserRouter>
   );
